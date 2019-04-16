@@ -129,7 +129,11 @@ class EventListener implements Listener {
                                 return;
                             }
                             $player->setXpLevel($player->getXpLevel() - $arr[2]);
-                            $toEnchant->addEnchantment(new EnchantmentInstance($ench), (int) $arr[1]);
+                            $level = $arr[1];
+                            if($level <= 0) {
+                                $level = 1;
+                            }
+                            $toEnchant->addEnchantment(new EnchantmentInstance($ench, (int) $level));
                             $player->getInventory()->setItemInHand($toEnchant);
                         }
 
@@ -146,7 +150,11 @@ class EventListener implements Listener {
                                 return;
                             }
                             $player->setXpLevel($player->getXpLevel() - $arr[2]);
-                            $toEnchant->addEnchantment(new EnchantmentInstance($ench), (int) $arr[1]);
+                            $level = $arr[1];
+                            if($level <= 0) {
+                                $level = 1;
+                            }
+                            $toEnchant->addEnchantment(new EnchantmentInstance($ench, (int) $level));
                             $player->getInventory()->setItemInHand($toEnchant);
                         }
                         break;
@@ -162,7 +170,11 @@ class EventListener implements Listener {
                                 return;
                             }
                             $player->setXpLevel($player->getXpLevel() - $arr[2]);
-                            $toEnchant->addEnchantment(new EnchantmentInstance($ench), (int) $arr[1]);
+                            $level = $arr[1];
+                            if($level <= 0) {
+                                $level = 1;
+                            }
+                            $toEnchant->addEnchantment(new EnchantmentInstance($ench, (int) $level));
                             $player->getInventory()->setItemInHand($toEnchant);
                         }
                         break;
