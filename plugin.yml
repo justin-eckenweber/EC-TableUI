@@ -1,0 +1,7 @@
+name: EC-TableUI
+description: An Enchantmenttable made with FormAPI
+version: 0.1.0-pre
+main: SchdowNVIDIA\ECTUI\Main
+api: 3.0.0
+depend:
+  - FormAPI
