@@ -192,9 +192,11 @@ class EventListener implements Listener {
 
         $block = $event->getBlock();
         if($block->getId() === Block::ENCHANTING_TABLE || $block->getId() === Block::ENCHANTMENT_TABLE) {
-            $toEnchant = $event->getItem();
-            $this->openECTUI($event->getPlayer(), $toEnchant, $block);
-            //$event->getPlayer()->sendMessage("Bookshelfs: ".$this->getBookshelfs($block));
+            if($event->getPlayer()->isSneaking() === false) {
+                $toEnchant = $event->getItem();
+                $this->openECTUI($event->getPlayer(), $toEnchant, $block);
+                //$event->getPlayer()->sendMessage("Bookshelfs: ".$this->getBookshelfs($block));
+            }
         }
 
     }
