@@ -67,13 +67,34 @@ class EventListener implements Listener {
             );
         }
         else if($toEnchant instanceof Tool) {
-
+            $firstEnch = explode(":", $this->plugin->toolEnchantments[array_rand($this->plugin->toolEnchantments)]);
+            $secondEnch = explode(":", $this->plugin->toolEnchantments[array_rand($this->plugin->toolEnchantments)]);
+            $thirdEnch = explode(":", $this->plugin->toolEnchantments[array_rand($this->plugin->toolEnchantments)]);
+            $enchants = array(
+                0 => $firstEnch[0].":".rand(1, intval($firstEnch[1] * ($levelSub - 0.15))).":".rand(intval(2 * ($levelSub + 1)), intval(6 * ($levelSub + 1))),
+                1 => $secondEnch[0].":".rand(1, intval($secondEnch[1] * ($levelSub - 0.10))).":".rand(intval(6 * ($levelSub + 1)), intval(10 * ($levelSub + 1))),
+                2 => $thirdEnch[0].":".rand(2, intval($thirdEnch[1] * ($levelSub))).":".rand(intval(10 * ($levelSub + 1)), intval(15 * ($levelSub + 1)))
+            );
         }
         else if($toEnchant instanceof Armor) {
-
+            $firstEnch = explode(":", $this->plugin->armorEnchantments[array_rand($this->plugin->armorEnchantments)]);
+            $secondEnch = explode(":", $this->plugin->armorEnchantments[array_rand($this->plugin->armorEnchantments)]);
+            $thirdEnch = explode(":", $this->plugin->armorEnchantments[array_rand($this->plugin->armorEnchantments)]);
+            $enchants = array(
+                0 => $firstEnch[0].":".rand(1, intval($firstEnch[1] * ($levelSub - 0.15))).":".rand(intval(2 * ($levelSub + 1)), intval(6 * ($levelSub + 1))),
+                1 => $secondEnch[0].":".rand(1, intval($secondEnch[1] * ($levelSub - 0.10))).":".rand(intval(6 * ($levelSub + 1)), intval(10 * ($levelSub + 1))),
+                2 => $thirdEnch[0].":".rand(2, intval($thirdEnch[1] * ($levelSub))).":".rand(intval(10 * ($levelSub + 1)), intval(15 * ($levelSub + 1)))
+            );
         }
         else if($toEnchant instanceof Bow) {
-
+            $firstEnch = explode(":", $this->plugin->bowEnchantments[array_rand($this->plugin->bowEnchantments)]);
+            $secondEnch = explode(":", $this->plugin->bowEnchantments[array_rand($this->plugin->bowEnchantments)]);
+            $thirdEnch = explode(":", $this->plugin->bowEnchantments[array_rand($this->plugin->bowEnchantments)]);
+            $enchants = array(
+                0 => $firstEnch[0].":".rand(1, intval($firstEnch[1] * ($levelSub - 0.15))).":".rand(intval(2 * ($levelSub + 1)), intval(6 * ($levelSub + 1))),
+                1 => $secondEnch[0].":".rand(1, intval($secondEnch[1] * ($levelSub - 0.10))).":".rand(intval(6 * ($levelSub + 1)), intval(10 * ($levelSub + 1))),
+                2 => $thirdEnch[0].":".rand(2, intval($thirdEnch[1] * ($levelSub))).":".rand(intval(10 * ($levelSub + 1)), intval(15 * ($levelSub + 1)))
+            );
         } else {
             $enchants = [];
         }
@@ -174,9 +195,6 @@ class EventListener implements Listener {
             $toEnchant = $event->getItem();
             $this->openECTUI($event->getPlayer(), $toEnchant, $block);
             //$event->getPlayer()->sendMessage("Bookshelfs: ".$this->getBookshelfs($block));
-            if($toEnchant instanceof Sword) {
-                $event->getPlayer()->sendMessage("That's a sword!");
-            }
         }
 
     }
