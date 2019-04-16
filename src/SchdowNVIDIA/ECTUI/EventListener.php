@@ -20,7 +20,6 @@ declare(strict_types = 1);
 
 namespace SchdowNVIDIA\ECTUI;
 
-use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\block\Block;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
@@ -32,6 +31,7 @@ use pocketmine\item\Item;
 use pocketmine\item\Sword;
 use pocketmine\item\Tool;
 use pocketmine\Player;
+use SchdowNVIDIA\ECTUI\libs\jojoe77777\FormAPI\SimpleForm;
 
 class EventListener implements Listener {
 
