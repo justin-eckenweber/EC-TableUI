@@ -26,18 +26,26 @@ use pocketmine\plugin\PluginBase;
 
 class Main extends PluginBase {
 
+    public $swordEnchantments = [];
+    public $armorEnchantments = [];
+    public $toolEnchantments = [];
+    public $bowEnchantments = [];
     public $enchantments = ["sharpness", "protection", "fortune", "unbreaking", "knockback", "fire_protection", "punch", "flame", "feather_falling", "efficiency", "infinity", "power", "thorns"];
 
     public function onEnable()
     {
         @mkdir($this->getDataFolder());
         $this->saveDefaultConfig();
-        $this->registerEnchantments();
+        $this->initEnchantments();
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
     }
 
-    public function registerEnchantments() {
+    public function initEnchantments() {
         Enchantment::registerEnchantment(new Enchantment(Enchantment::FORTUNE, "Fortune", Enchantment::RARITY_UNCOMMON, Enchantment::SLOT_DIG, Enchantment::SLOT_NONE, 3));
+        $this->swordEnchantments = $this->getConfig()->get("swordEnchantments");
+        $this->armorEnchantments = $this->getConfig()->get("armorEnchantments");
+        $this->toolEnchantments = $this->getConfig()->get("toolEnchantments");
+        $this->bowEnchantments = $this->getConfig()->get("toolEnchantments");
     }
 
     public function getBookshelfs(Block $ectable) : int {

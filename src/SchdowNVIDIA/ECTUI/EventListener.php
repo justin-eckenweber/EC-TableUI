@@ -24,9 +24,13 @@ use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\block\Block;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\item\Armor;
+use pocketmine\item\Bow;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\Item;
+use pocketmine\item\Sword;
+use pocketmine\item\Tool;
 use pocketmine\Player;
 
 class EventListener implements Listener {
@@ -39,18 +43,55 @@ class EventListener implements Listener {
     }
 
     public function generateEnchants(Item $toEnchant, Block $ectable) : array {
-        $bookshelfs = $this->getBookshelfs($ectable);
+        $bookshelfs = $this->plugin->getBookshelfs($ectable);
+        if($bookshelfs >= 0) {
+            $levelSub = 0.20;
+        }
+        if($bookshelfs > 5) {
+            $levelSub = 0.40;
+        }
+        if($bookshelfs > 10) {
+            $levelSub = 0.70;
+        }
+        if($bookshelfs > 15) {
+            $levelSub = 1;
+        }
+        if($toEnchant instanceof Sword) {
+            $firstEnch = explode(":", $this->plugin->swordEnchantments[array_rand($this->plugin->swordEnchantments)]);
+            $secondEnch = explode(":", $this->plugin->swordEnchantments[array_rand($this->plugin->swordEnchantments)]);
+            $thirdEnch = explode(":", $this->plugin->swordEnchantments[array_rand($this->plugin->swordEnchantments)]);
+            $enchants = array(
+                0 => $firstEnch[0].":".rand(1, intval($firstEnch[1] * ($levelSub - 0.15))).":".rand(intval(2 * ($levelSub + 1)), intval(6 * ($levelSub + 1))),
+                1 => $secondEnch[0].":".rand(1, intval($secondEnch[1] * ($levelSub - 0.10))).":".rand(intval(6 * ($levelSub + 1)), intval(10 * ($levelSub + 1))),
+                2 => $thirdEnch[0].":".rand(2, intval($thirdEnch[1] * ($levelSub))).":".rand(intval(10 * ($levelSub + 1)), intval(15 * ($levelSub + 1)))
+            );
+        }
+        else if($toEnchant instanceof Tool) {
 
+        }
+        else if($toEnchant instanceof Armor) {
+
+        }
+        else if($toEnchant instanceof Bow) {
+
+        } else {
+            $enchants = [];
+        }
+        return $enchants;
     }
 
     public function openECTUI(Player $player, Item $toEnchant, Block $ectable) {
 
-        //$enchants = $this->generateEnchants($toEnchant, $ectable);
-        $enchants = array(
+        $enchants = $this->generateEnchants($toEnchant, $ectable);
+        if(empty($enchants)) {
+            $player->sendMessage("§cThere are no enchantments available for this item!");
+            return;
+        }
+        /*$enchants = array(
             0 => $this->plugin->enchantments[array_rand($this->plugin->enchantments)].":".(1).":".rand(1, 9),
             1 => $this->plugin->enchantments[array_rand($this->plugin->enchantments)].":".rand(1, 2).":".rand(9, 16),
             2 => $this->plugin->enchantments[array_rand($this->plugin->enchantments)].":".rand(2, 3).":".rand(16, 30)
-        );
+        );*/
 
         $form = new SimpleForm(function (Player $player, int $data = null) use ($toEnchant, $enchants) {
             if($data != null) {
@@ -115,7 +156,11 @@ class EventListener implements Listener {
         $form->addButton("§l§cLEAVE");
         foreach ($enchants as $ec) {
             $arr = explode(":", $ec);
-            $form->addButton($arr[0]." (".$arr[1].") for ".$arr[2]." levels");
+            $lvl = $arr[1];
+            if($lvl <= 0) {
+                $lvl = 1;
+            }
+            $form->addButton($arr[0]." (".$lvl.") for ".$arr[2]." levels");
         }
         $form->setContent("Enchant your holding Item");
         $form->sendToPlayer($player);
@@ -128,7 +173,10 @@ class EventListener implements Listener {
         if($block->getId() === Block::ENCHANTING_TABLE || $block->getId() === Block::ENCHANTMENT_TABLE) {
             $toEnchant = $event->getItem();
             $this->openECTUI($event->getPlayer(), $toEnchant, $block);
-            $event->getPlayer()->sendMessage("Bookshelfs: ".$this->getBookshelfs($block));
+            //$event->getPlayer()->sendMessage("Bookshelfs: ".$this->getBookshelfs($block));
+            if($toEnchant instanceof Sword) {
+                $event->getPlayer()->sendMessage("That's a sword!");
+            }
         }
 
     }

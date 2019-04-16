@@ -1,0 +1,28 @@
+# ECTUI Config
+# Do not change this value!
+version: 1
+
+
+# Format:
+# enchantment_name:maxlevel
+swordEnchantments:
+  - sharpness:5
+  - unbreaking:3
+  - looting:2
+  - fire_aspect:2
+armorEnchantments:
+  - protection:4
+  - thorns:3
+  - unbreaking:3
+  - feather_falling:3
+toolEnchantments:
+  - fortune:3
+  - unbreaking:3
+  - efficiency:5
+bowEnchantments:
+  - punch:2
+  - power:5
+  - unbreaking:3
+  - flame:2
+
+
