@@ -20,12 +20,13 @@ declare(strict_types = 1);
 
 namespace SchdowNVIDIA\ECTUI;
 
+use pocketmine\block\Block;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\plugin\PluginBase;
 
 class Main extends PluginBase {
 
-    public $enchantments = ["sharpness", "protection", "fortune", "unbreaking", "knockback"];
+    public $enchantments = ["sharpness", "protection", "fortune", "unbreaking", "knockback", "fire_protection", "punch", "flame", "feather_falling", "efficiency", "infinity", "power", "thorns"];
 
     public function onEnable()
     {
@@ -37,5 +38,84 @@ class Main extends PluginBase {
 
     public function registerEnchantments() {
         Enchantment::registerEnchantment(new Enchantment(Enchantment::FORTUNE, "Fortune", Enchantment::RARITY_UNCOMMON, Enchantment::SLOT_DIG, Enchantment::SLOT_NONE, 3));
+    }
+
+    public function getBookshelfs(Block $ectable) : int {
+        $count = 0;
+        $level = $ectable->getLevel();
+        // b stands for "base"
+        $bx = $ectable->getX();
+        $by = $ectable->getY();
+        $bz = $ectable->getZ();
+        // Right
+        for($i = 0; $i <= 2; $i++) {
+            for($ii = 0; $ii <= 2; $ii++) {
+                if ($i === 0) {
+                    if ($level->getBlockIdAt($bx, $by + $ii, $bz + 2) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                } else {
+                    if ($level->getBlockIdAt($bx + $i, $by + $ii, $bz + 2) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                    if ($level->getBlockIdAt($bx - $i, $by + $ii, $bz + 2) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                }
+            }
+        }
+        // Left
+        for($i = 0; $i <= 2; $i++) {
+            for($ii = 0; $ii <= 2; $ii++) {
+                if ($i === 0) {
+                    if ($level->getBlockIdAt($bx, $by + $ii, $bz - 2) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                } else {
+                    if ($level->getBlockIdAt($bx + $i, $by + $ii, $bz - 2) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                    if ($level->getBlockIdAt($bx - $i, $by + $ii, $bz - 2) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                }
+            }
+        }
+        // Top
+        for($i = 0; $i <= 1; $i++) {
+            for($ii = 0; $ii <= 2; $ii++) {
+                if ($i === 0) {
+                    if ($level->getBlockIdAt($bx + 2, $by + $ii, $bz) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                } else {
+                    if ($level->getBlockIdAt($bx + 2, $by + $ii, $bz + $i) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                    if ($level->getBlockIdAt($bx + 2, $by + $ii, $bz - $i) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                }
+            }
+        }
+        // Bottom
+        for($i = 0; $i <= 1; $i++) {
+            for($ii = 0; $ii <= 2; $ii++) {
+                if ($i === 0) {
+                    if ($level->getBlockIdAt($bx - 2, $by + $ii, $bz) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                } else {
+                    if ($level->getBlockIdAt($bx - 2, $by + $ii, $bz + $i) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                    if ($level->getBlockIdAt($bx - 2, $by + $ii, $bz - $i) === Block::BOOKSHELF) {
+                        $count++;
+                    }
+                }
+            }
+        }
+        return $count;
+
     }
 }

@@ -38,8 +38,14 @@ class EventListener implements Listener {
         $this->plugin = $plugin;
     }
 
-    public function openECTUI(Player $player, Item $toEnchant) {
+    public function generateEnchants(Item $toEnchant, Block $ectable) : array {
+        $bookshelfs = $this->getBookshelfs($ectable);
 
+    }
+
+    public function openECTUI(Player $player, Item $toEnchant, Block $ectable) {
+
+        //$enchants = $this->generateEnchants($toEnchant, $ectable);
         $enchants = array(
             0 => $this->plugin->enchantments[array_rand($this->plugin->enchantments)].":".(1).":".rand(1, 9),
             1 => $this->plugin->enchantments[array_rand($this->plugin->enchantments)].":".rand(1, 2).":".rand(9, 16),
@@ -121,7 +127,8 @@ class EventListener implements Listener {
         $block = $event->getBlock();
         if($block->getId() === Block::ENCHANTING_TABLE || $block->getId() === Block::ENCHANTMENT_TABLE) {
             $toEnchant = $event->getItem();
-            $this->openECTUI($event->getPlayer(), $toEnchant);
+            $this->openECTUI($event->getPlayer(), $toEnchant, $block);
+            $event->getPlayer()->sendMessage("Bookshelfs: ".$this->getBookshelfs($block));
         }
 
     }
