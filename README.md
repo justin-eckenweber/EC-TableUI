@@ -9,4 +9,6 @@ An Enchantmenttable made with FormAPI.
 5. Enjoy!
 
 # ToDo
-- [ ] Better level system (Enchantmenttable with bookshelfs)
+- [X] Better level system (Enchantmenttable with bookshelfs)
+- [ ] Level System with lapis support
+- [ ] More vanilla-like
