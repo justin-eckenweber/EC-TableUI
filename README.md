@@ -1,3 +1,6 @@
+[![](https://poggit.pmmp.io/shield.state/EC-TableUI)](https://poggit.pmmp.io/p/EC-TableUI)
+[![](https://poggit.pmmp.io/shield.api/EC-TableUI)](https://poggit.pmmp.io/p/EC-TableUI)
+[![](https://img.shields.io/discord/323953253458903040.svg?style=flat-square)]
 # EC-TableUI
 An Enchantmenttable made with FormAPI.
 
