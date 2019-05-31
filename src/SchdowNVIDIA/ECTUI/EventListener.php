@@ -31,7 +31,7 @@ use pocketmine\item\Item;
 use pocketmine\item\Sword;
 use pocketmine\item\Tool;
 use pocketmine\Player;
-use SchdowNVIDIA\ECTUI\libs\jojoe77777\FormAPI\SimpleForm;
+use jojoe77777\FormAPI\SimpleForm;
 
 class EventListener implements Listener {
 
