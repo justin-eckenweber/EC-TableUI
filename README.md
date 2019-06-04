@@ -13,8 +13,9 @@ An Enchantmenttable made with FormAPI.
 
 # ToDo
 - [X] Better level system (Enchantmenttable with bookshelfs)
-- [ ] Level System with lapis support
-- [ ] More vanilla-like
+- [ ] Recode of EC-TableUI
+- [ ] Level System with lapis support (Comes with Recode)
+- [ ] More vanilla-like (Planned with Recode)
 
 # Additional Information
 EC-TableUI only works with PocketMine-MP. There is no support for any forks.
