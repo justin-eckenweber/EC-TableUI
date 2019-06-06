@@ -30,7 +30,6 @@ class Main extends PluginBase {
     public $armorEnchantments = [];
     public $toolEnchantments = [];
     public $bowEnchantments = [];
-    public $enchantments = ["sharpness", "protection", "fortune", "unbreaking", "knockback", "fire_protection", "punch", "flame", "feather_falling", "efficiency", "infinity", "power", "thorns"];
 
     public function onEnable()
     {
@@ -41,7 +40,10 @@ class Main extends PluginBase {
     }
 
     public function initEnchantments() {
+        // registering some missing enchantments
         Enchantment::registerEnchantment(new Enchantment(Enchantment::FORTUNE, "Fortune", Enchantment::RARITY_UNCOMMON, Enchantment::SLOT_DIG, Enchantment::SLOT_NONE, 3));
+        Enchantment::registerEnchantment(new Enchantment(Enchantment::LOOTING, "Looting", Enchantment::RARITY_UNCOMMON, Enchantment::SLOT_SWORD, Enchantment::SLOT_NONE, 3));
+
         $this->swordEnchantments = $this->getConfig()->get("swordEnchantments");
         $this->armorEnchantments = $this->getConfig()->get("armorEnchantments");
         $this->toolEnchantments = $this->getConfig()->get("toolEnchantments");
