@@ -105,7 +105,7 @@ class EventListener implements Listener {
 
         $enchants = $this->generateEnchants($toEnchant, $ectable);
         if(empty($enchants)) {
-            $player->sendMessage("§cThere are no enchantments available for this item!");
+            $player->sendMessage("§c§lWARNING§r§7 There are no enchantments available for this item!");
             return;
         }
         /*$enchants = array(
@@ -120,12 +120,12 @@ class EventListener implements Listener {
                     case 1:
                         $arr = explode(":",$enchants[0]);
                         if($player->getXpLevel() < $arr[2]) {
-                            $player->sendMessage("§cYou don't have enough levels!");
+                            $player->sendMessage("§c§lWARNING§r§7 You don't have enough levels!");
                             return;
                         } else {
                             $ench = Enchantment::getEnchantmentByName($arr[0]);
                             if($toEnchant->getEnchantment($ench->getId())) {
-                                $player->sendMessage("§cYou can't enchant the same enchantment again!");
+                                $player->sendMessage("§c§lWARNING§r§7 You can't enchant the same enchantment again!");
                                 return;
                             }
                             $player->setXpLevel($player->getXpLevel() - $arr[2]);
@@ -141,12 +141,12 @@ class EventListener implements Listener {
                     case 2:
                         $arr = explode(":",$enchants[1]);
                         if($player->getXpLevel() < $arr[2]) {
-                            $player->sendMessage("§cYou don't have enough levels!");
+                            $player->sendMessage("§c§lWARNING§r§7 You don't have enough levels!");
                             return;
                         } else {
                             $ench = Enchantment::getEnchantmentByName($arr[0]);
                             if($toEnchant->getEnchantment($ench->getId())) {
-                                $player->sendMessage("§cYou can't enchant the same enchantment again!");
+                                $player->sendMessage("§c§lWARNING§r§7 You can't enchant the same enchantment again!");
                                 return;
                             }
                             $player->setXpLevel($player->getXpLevel() - $arr[2]);
@@ -161,12 +161,12 @@ class EventListener implements Listener {
                     case 3:
                         $arr = explode(":",$enchants[2]);
                         if($player->getXpLevel() < $arr[2]) {
-                            $player->sendMessage("§cYou don't have enough levels!");
+                            $player->sendMessage("§c§lWARNING§r§7 You don't have enough levels!");
                             return;
                         } else {
                             $ench = Enchantment::getEnchantmentByName($arr[0]);
                             if($toEnchant->getEnchantment($ench->getId())) {
-                                $player->sendMessage("§cYou can't enchant the same enchantment again!");
+                                $player->sendMessage("§c§lWARNING§r§7 You can't enchant the same enchantment again!");
                                 return;
                             }
                             $player->setXpLevel($player->getXpLevel() - $arr[2]);
@@ -185,17 +185,17 @@ class EventListener implements Listener {
             }
         });
 
-        $form->setTitle("Enchanting: ".$toEnchant->getName());
-        $form->addButton("§l§cLEAVE");
+        $form->setTitle("§a§lEnchanting:§r§7 ".$toEnchant->getName());
+        $form->addButton("Close");
         foreach ($enchants as $ec) {
             $arr = explode(":", $ec);
             $lvl = $arr[1];
             if($lvl <= 0) {
                 $lvl = 1;
             }
-            $form->addButton($arr[0]." (".$lvl.") for ".$arr[2]." levels");
+            $form->addButton($arr[0]." §a[".$lvl."]§r For §a".$arr[2]."§r levels");
         }
-        $form->setContent("Enchant your holding Item");
+        $form->setContent("§eEnchant your holding Item");
         $form->sendToPlayer($player);
 
     }
