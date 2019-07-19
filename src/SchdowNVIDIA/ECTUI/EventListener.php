@@ -66,6 +66,16 @@ class EventListener implements Listener {
                 2 => $thirdEnch[0].":".rand(2, intval($thirdEnch[1] * ($levelSub))).":".rand(intval(10 * ($levelSub + 1)), intval(15 * ($levelSub + 1)))
             );
         }
+        else if($toEnchant instanceof Bow) {
+            $firstEnch = explode(":", $this->plugin->bowEnchantments[array_rand($this->plugin->bowEnchantments)]);
+            $secondEnch = explode(":", $this->plugin->bowEnchantments[array_rand($this->plugin->bowEnchantments)]);
+            $thirdEnch = explode(":", $this->plugin->bowEnchantments[array_rand($this->plugin->bowEnchantments)]);
+            $enchants = array(
+                0 => $firstEnch[0] . ":" . rand(1, intval($firstEnch[1] * ($levelSub - 0.15))) . ":" . rand(intval(2 * ($levelSub + 1)), intval(6 * ($levelSub + 1))),
+                1 => $secondEnch[0] . ":" . rand(1, intval($secondEnch[1] * ($levelSub - 0.10))) . ":" . rand(intval(6 * ($levelSub + 1)), intval(10 * ($levelSub + 1))),
+                2 => $thirdEnch[0] . ":" . rand(2, intval($thirdEnch[1] * ($levelSub))) . ":" . rand(intval(10 * ($levelSub + 1)), intval(15 * ($levelSub + 1)))
+            );
+                }
         else if($toEnchant instanceof Tool) {
             $firstEnch = explode(":", $this->plugin->toolEnchantments[array_rand($this->plugin->toolEnchantments)]);
             $secondEnch = explode(":", $this->plugin->toolEnchantments[array_rand($this->plugin->toolEnchantments)]);
@@ -86,16 +96,7 @@ class EventListener implements Listener {
                 2 => $thirdEnch[0].":".rand(2, intval($thirdEnch[1] * ($levelSub))).":".rand(intval(10 * ($levelSub + 1)), intval(15 * ($levelSub + 1)))
             );
         }
-        else if($toEnchant instanceof Bow) {
-            $firstEnch = explode(":", $this->plugin->bowEnchantments[array_rand($this->plugin->bowEnchantments)]);
-            $secondEnch = explode(":", $this->plugin->bowEnchantments[array_rand($this->plugin->bowEnchantments)]);
-            $thirdEnch = explode(":", $this->plugin->bowEnchantments[array_rand($this->plugin->bowEnchantments)]);
-            $enchants = array(
-                0 => $firstEnch[0].":".rand(1, intval($firstEnch[1] * ($levelSub - 0.15))).":".rand(intval(2 * ($levelSub + 1)), intval(6 * ($levelSub + 1))),
-                1 => $secondEnch[0].":".rand(1, intval($secondEnch[1] * ($levelSub - 0.10))).":".rand(intval(6 * ($levelSub + 1)), intval(10 * ($levelSub + 1))),
-                2 => $thirdEnch[0].":".rand(2, intval($thirdEnch[1] * ($levelSub))).":".rand(intval(10 * ($levelSub + 1)), intval(15 * ($levelSub + 1)))
-            );
-        } else {
+        else {
             $enchants = [];
         }
         return $enchants;

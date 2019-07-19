@@ -47,7 +47,7 @@ class Main extends PluginBase {
         $this->swordEnchantments = $this->getConfig()->get("swordEnchantments");
         $this->armorEnchantments = $this->getConfig()->get("armorEnchantments");
         $this->toolEnchantments = $this->getConfig()->get("toolEnchantments");
-        $this->bowEnchantments = $this->getConfig()->get("toolEnchantments");
+        $this->bowEnchantments = $this->getConfig()->get("bowEnchantments");
     }
 
     public function getBookshelfs(Block $ectable) : int {
