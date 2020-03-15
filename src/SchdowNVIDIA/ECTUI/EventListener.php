@@ -177,7 +177,7 @@ class EventListener implements Listener {
                                 $level = 1;
                             }
                             
-                            if($toEnchant->getId() !== $player->getItemInHand()->getId()){
+                            if($toEnchant->getId() !== $player->getInventory()->getItemInHand()->getId()){
                                 $player->sendMessage(TF::RED . "Are you trying to swindle me?");
                                 return;
                             }
