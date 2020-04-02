@@ -30,6 +30,7 @@ use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\Item;
 use pocketmine\item\Sword;
 use pocketmine\item\Tool;
+use pocketmine\utils\TextFormat as TF;
 use pocketmine\Player;
 use jojoe77777\FormAPI\SimpleForm;
 
@@ -175,6 +176,12 @@ class EventListener implements Listener {
                             if($level <= 0) {
                                 $level = 1;
                             }
+                            
+                            if($toEnchant->getId() !== $player->getInventory()->getItemInHand()->getId()){
+                                $player->sendMessage(TF::RED . "Are you trying to swindle me?");
+                                return;
+                            }
+                            
                             $toEnchant->addEnchantment(new EnchantmentInstance($ench, (int) $level));
                             $player->getInventory()->setItemInHand($toEnchant);
                         }
