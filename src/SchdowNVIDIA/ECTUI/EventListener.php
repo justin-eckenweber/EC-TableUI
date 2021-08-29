@@ -30,7 +30,7 @@ use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\Item;
 use pocketmine\item\Sword;
 use pocketmine\item\Tool;
-use pocketmine\utils\TextFormat as TF;
+use pocketmine\utils\TextFormat;
 use pocketmine\Player;
 use jojoe77777\FormAPI\SimpleForm;
 
@@ -178,7 +178,7 @@ class EventListener implements Listener {
                             }
                             
                             if($toEnchant->getId() !== $player->getInventory()->getItemInHand()->getId()){
-                                $player->sendMessage(TF::RED . "Are you trying to swindle me?");
+                                $player->sendMessage("§4Are you trying to swindle me?");
                                 return;
                             }
                             
